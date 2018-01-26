@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="Content/css/style.css">
+</head>
+<body>
+    <script type="text/javascript" src="./Content/js/main.js"></script>
+    <script type="text/javascript">
+        ajax("http://localhost:8080/data/").then((result)=>{
+            let createImages=new createImg(JSON.parse(result));
+            //console.log(result);
+        }).catch((error)=>{
+           // console.log(error);
+        });
+        class createImg{
+            constructor(obj){
+                this.obj=obj;
+                //console.log(obj)
+                this.init();
+            }
+            init(){
+                //console.log(this.obj)
+                this.obj.map(function(item,index){
+                    //console.log(item)
+                    var img=document.createElement("img");
+                    img.src=item["img"];
+                    document.body.append(img);
+                })
+            }
+        }
+    </script>
+</body>
+</html>
